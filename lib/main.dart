@@ -23,10 +23,10 @@ void main(List<String> args) {
             : boolValue.lightTheme, //change the theme
         routes: {
           '/HomePage': (ctx) {
-            return HomePage();
+            return const HomePage();
           },
           '/CartPage': (ctx) {
-            return MyCartPage();
+            return const MyCartPage();
           },
         },
         initialRoute: "/HomePage",
