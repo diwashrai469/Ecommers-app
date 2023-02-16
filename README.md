@@ -1,16 +1,8 @@
-# demo_app
+# Ecommers app
+   Ecommers app with dark and light theme
+ 
+ # Light theme
+![Screenshot_1676543830,50%](https://user-images.githubusercontent.com/62002764/219341864-1c1606d8-f704-40cf-a736-cf5493f0e03d.png)
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Dark theme
+![Screenshot_1676543955,50%](https://user-images.githubusercontent.com/62002764/219342302-094259ac-66af-42ff-b996-f2c04b6d9662.png)
