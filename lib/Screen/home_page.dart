@@ -56,7 +56,6 @@ class _HomePageState extends State<HomePage> {
                     )),
               ),
               Consumer<DataProvider>(
-                  //consumer datas
                   builder: (context, value, child) => Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextWidget(
