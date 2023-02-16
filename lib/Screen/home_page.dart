@@ -26,6 +26,7 @@ class _HomePageState extends State<HomePage> {
     final themeProvider = Provider.of<ThemeChangerBool>(context, listen: false)
         .iconBool; // data got from theme provider
     print("rebuilt");
+    print("new data");
 
     return SafeArea(
       child: Scaffold(
