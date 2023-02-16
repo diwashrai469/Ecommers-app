@@ -16,6 +16,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  //icons for dark and light theme
   Icon iconlight = const Icon(Icons.wb_sunny);
   Icon iconDark = const Icon(Icons.nights_stay);
   @override
