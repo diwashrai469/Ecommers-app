@@ -8,7 +8,9 @@ class CustomeText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(text.toString(),
-        style: TextStyle(fontSize: size, fontWeight: FontWeight.bold));
+    return Text(
+      text.toString(),
+      style: TextStyle(fontSize: size, fontWeight: FontWeight.bold),
+    );
   }
 }

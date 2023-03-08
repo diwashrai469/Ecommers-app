@@ -34,21 +34,22 @@ class _MyCartPageState extends State<CartScreen> {
               color: themeProvider ? Colors.white : Colors.black,
             ),
             Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Consumer<EcommerceItemsProvider>(
-                  builder: (context, datalists, child) => TextWidget(
-                    text: "Your total price is: ${datalists.totalprice}",
-                    size: 20,
-                  ),
-                ))
+              padding: const EdgeInsets.all(8.0),
+              child: Consumer<EcommerceItemsProvider>(
+                builder: (context, datalists, child) => CustomeText(
+                  text: "Your total price is: ${datalists.totalprice}",
+                  size: 20,
+                ),
+              ),
+            )
           ],
         ),
         appBar: AppBar(
-          title:const TextWidget(text: "My cart"),
+          title: const CustomeText(text: "My cart"),
         ),
         body: myData.count == 0
             ? const Center(
-                child: TextWidget(
+                child: CustomeText(
                   text: "Nothing is added to cart",
                 ),
               )
@@ -65,43 +66,45 @@ class _MyCartPageState extends State<CartScreen> {
                               borderRadius: BorderRadius.circular(10)),
                           elevation: 5,
                           child: ListTile(
-                              title: Text(
-                                "${data.id.toString()} .",
-                                style: TextStyle(
-                                    color: themeProvider
-                                        ? Colors.black
-                                        : Colors.black,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold),
+                            title: Text(
+                              "${data.id.toString()} .",
+                              style: TextStyle(
+                                  color: themeProvider
+                                      ? Colors.black
+                                      : Colors.black,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            subtitle: Column(
+                              children: [
+                                Padding(
+                                  padding: mainPadding,
+                                  child: CustomeText(
+                                    text: data.title.toString(),
+                                    size: 20,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Image.network(data.image.toString()),
+                                ),
+                                CustomeText(
+                                  text: "Rs.${data.price.toString()}",
+                                  size: 30,
+                                ),
+                              ],
+                            ),
+                            trailing: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.teal),
+                              onPressed: () {
+                                datalists.removeItems(data);
+                              },
+                              child: const CustomeText(
+                                text: "Remove",
                               ),
-                              subtitle: Column(
-                                children: [
-                                  Padding(
-                                    padding: mainPadding,
-                                    child: TextWidget(
-                                      text: data.title.toString(),
-                                      size: 20,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Image.network(data.image.toString()),
-                                  ),
-                                  TextWidget(
-                                    text: "Rs.${data.price.toString()}",
-                                    size: 30,
-                                  ),
-                                ],
-                              ),
-                              trailing: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.teal),
-                                  onPressed: () {
-                                    datalists.removeItems(data);
-                                  },
-                                  child: TextWidget(
-                                    text: "Remove",
-                                  ),),),
+                            ),
+                          ),
                         ),
                       );
                     })),
