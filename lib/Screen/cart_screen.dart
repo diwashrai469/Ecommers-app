@@ -1,23 +1,23 @@
-import 'package:demo_app/Provider/theme_provider.dart';
+import 'package:demo_app/theme/theme_provider.dart';
 import 'package:demo_app/constant/constants.dart';
-import 'package:demo_app/Provider/ApiProvider/api.dart';
+import 'package:demo_app/Provider/dio_state/ecommerce_items_provider.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../widgets/ResuableWidgets/text_widget.dart';
+import '../widgets/custom_widgets/custom_text.dart';
 
-class MyCartPage extends StatefulWidget {
-  const MyCartPage({super.key});
+class CartScreen extends StatefulWidget {
+  const CartScreen({super.key});
 
   @override
-  State<MyCartPage> createState() => _MyCartPageState();
+  State<CartScreen> createState() => _MyCartPageState();
 }
 
-class _MyCartPageState extends State<MyCartPage> {
+class _MyCartPageState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
-    final myData = Provider.of<DataProvider>(context,
+    final myData = Provider.of<EcommerceItemsProvider>(context,
         listen: false); // get api data from provider
     final themeProvider = Provider.of<ThemeChangerBool>(context, listen: false)
         .iconBool; // get bool data form provider
@@ -35,7 +35,7 @@ class _MyCartPageState extends State<MyCartPage> {
             ),
             Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Consumer<DataProvider>(
+                child: Consumer<EcommerceItemsProvider>(
                   builder: (context, datalists, child) => TextWidget(
                     text: "Your total price is: ${datalists.totalprice}",
                     size: 20,
@@ -44,15 +44,15 @@ class _MyCartPageState extends State<MyCartPage> {
           ],
         ),
         appBar: AppBar(
-          title: TextWidget(text: "My cart"),
+          title:const TextWidget(text: "My cart"),
         ),
         body: myData.count == 0
-            ? Center(
+            ? const Center(
                 child: TextWidget(
                   text: "Nothing is added to cart",
                 ),
               )
-            : Consumer<DataProvider>(
+            : Consumer<EcommerceItemsProvider>(
                 builder: (context, datalists, child) => ListView.builder(
                     itemCount: datalists.count,
                     itemBuilder: (context, index) {
@@ -101,7 +101,7 @@ class _MyCartPageState extends State<MyCartPage> {
                                   },
                                   child: TextWidget(
                                     text: "Remove",
-                                  ))),
+                                  ),),),
                         ),
                       );
                     })),

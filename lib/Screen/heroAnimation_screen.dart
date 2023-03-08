@@ -1,11 +1,11 @@
 import 'package:demo_app/Model/api_model.dart';
 import 'package:demo_app/constant/constants.dart';
-import 'package:demo_app/widgets/ResuableWidgets/text_widget.dart';
+import 'package:demo_app/widgets/custom_widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 
-class HeroAnimation extends StatelessWidget {
-  ApiModel heroTag;
-  HeroAnimation({super.key, required this.heroTag});
+class HeroAnimationScreen extends StatelessWidget {
+  final ApiModel heroTag;
+  const HeroAnimationScreen({super.key, required this.heroTag});
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class HeroAnimation extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextWidget(
-                        text: "Category:" + heroTag.category.toString(),
+                        text: "Category:${heroTag.category.toString()}",
                       ),
                     )
                   ],

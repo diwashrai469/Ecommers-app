@@ -1,15 +1,16 @@
-import 'package:demo_app/Screen/cart_page.dart';
-import 'package:demo_app/Provider/theme_provider.dart';
+import 'package:demo_app/Screen/cart_screen.dart';
+import 'package:demo_app/theme/theme_provider.dart';
+import 'package:demo_app/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'Provider/ApiProvider/api.dart';
-import 'Screen/home_page.dart';
+import 'Provider/dio_state/ecommerce_items_provider.dart';
+import 'Screen/home_screen.dart';
 
 void main(List<String> args) {
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (_) => DataProvider()),
+      ChangeNotifierProvider(create: (_) => EcommerceItemsProvider()),
       ChangeNotifierProvider(create: (_) => ThemeChangerBool()),
     ],
     child: Builder(builder: (context) {
@@ -19,14 +20,14 @@ void main(List<String> args) {
 
       return MaterialApp(
         theme: boolValue.iconBool
-            ? boolValue.darkTheme
-            : boolValue.lightTheme, //change the theme
+            ?AppTheme().darkTheme
+            : AppTheme().lightTheme, //change the theme
         routes: {
           '/HomePage': (ctx) {
-            return const HomePage();
+            return const HomeScreen();
           },
           '/CartPage': (ctx) {
-            return const MyCartPage();
+            return const CartScreen();
           },
         },
         initialRoute: "/HomePage",

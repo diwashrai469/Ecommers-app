@@ -1,32 +1,32 @@
-import 'package:demo_app/Provider/theme_provider.dart';
-import 'package:demo_app/Screen/cart_page.dart';
-import 'package:demo_app/Screen/heroAnimation_page.dart';
+import 'package:demo_app/Provider/dio_state/ecommerce_items_provider.dart';
+import 'package:demo_app/Screen/cart_screen.dart';
+import 'package:demo_app/Screen/heroAnimation_screen.dart';
+import 'package:demo_app/theme/theme_provider.dart';
 import 'package:demo_app/constant/constants.dart';
-import 'package:demo_app/widgets/ResuableWidgets/text_widget.dart';
+import 'package:demo_app/widgets/custom_widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../Provider/ApiProvider/api.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomeScreen> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomeScreen> {
   //icons for dark and light theme
   Icon iconlight = const Icon(Icons.wb_sunny);
   Icon iconDark = const Icon(Icons.nights_stay);
   @override
   Widget build(BuildContext context) {
-    final apiProviderObj = Provider.of<DataProvider>(context,
+    final apiProviderObj = Provider.of<EcommerceItemsProvider>(context,
         listen: false); // data got from api provider
     final themeProvider = Provider.of<ThemeChangerBool>(context, listen: false)
         .iconBool; // data got from theme provider
     print("rebuilt");
-    print("new data");
+    
 
     return SafeArea(
       child: Scaffold(
@@ -49,46 +49,46 @@ class _HomePageState extends State<HomePage> {
                     onTap: () {
                       Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) {
-                        return const MyCartPage();
+                        return const CartScreen();
                       }));
                     },
                     child: const Icon(
                       Icons.shopping_cart,
                     )),
               ),
-              Consumer<DataProvider>(
+              Consumer<EcommerceItemsProvider>(
                   builder: (context, value, child) => Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: TextWidget(
+                      child: CustomeText(
                         text: value.count.toString(),
                       )))
             ],
           ),
           body: FutureBuilder(
             future: apiProviderObj.fetchData(),
-            builder: (context, Snapshot) {
-              if (Snapshot.connectionState == ConnectionState.waiting) {
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(
                   child: CircularProgressIndicator(),
                 );
               }
-              if (Snapshot.hasError) {
+              if (snapshot.hasError) {
                 return Center(
-                  child: Text("ERROR: ${Snapshot.error}"),
+                  child: Text("ERROR: ${snapshot.error}"),
                 );
               }
-              return Consumer<DataProvider>(
+              return Consumer<EcommerceItemsProvider>(
                   builder: (context, datalists, child) => ListView.builder(
                       itemCount: datalists.apiDataList.length,
                       itemBuilder: (context, index) {
                         final apidata = datalists
-                            .apiDataList[index]; // gets all api data index and
+                            .apiDataList[index]; // gets all api data index
 
                         return GestureDetector(
                           onTap: () {
                             Navigator.of(context)
                                 .push(MaterialPageRoute(builder: (context) {
-                              return HeroAnimation(heroTag: apidata);
+                              return HeroAnimationScreen(heroTag: apidata);
                             }));
                           },
                           child: Hero(
@@ -114,7 +114,7 @@ class _HomePageState extends State<HomePage> {
                                           children: [
                                             Padding(
                                               padding: mainPadding,
-                                              child: TextWidget(
+                                              child: CustomeText(
                                                 text: apidata.title.toString(),
                                                 size: 20,
                                               ),
@@ -132,7 +132,7 @@ class _HomePageState extends State<HomePage> {
                                                     return const CircularProgressIndicator();
                                                   },
                                                 )),
-                                            TextWidget(
+                                            CustomeText(
                                               text:
                                                   "Rs. ${apidata.price.toString()}",
                                               size: 30,

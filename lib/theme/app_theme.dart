@@ -1,15 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ThemeChangerBool with ChangeNotifier {
-  bool _iconBool = false;
-
-  bool get iconBool => _iconBool;
-
-  void setBoolVal() {
-    _iconBool = !_iconBool;
-    notifyListeners();
-  }
-
+class AppTheme{
   // for light theme
   final ThemeData lightTheme = ThemeData(
       primaryColor: Colors.amber,
@@ -19,7 +10,7 @@ class ThemeChangerBool with ChangeNotifier {
           backgroundColor: Colors.transparent,
           elevation: 0,
           centerTitle: true,
-          foregroundColor: Colors.black, //for counter and back button
+          foregroundColor: Colors.black, //color for counter and back button
           titleTextStyle: TextStyle(
               // app title text
               color: Colors.black,
@@ -41,3 +32,4 @@ class ThemeChangerBool with ChangeNotifier {
       ),
       textTheme: const TextTheme(bodySmall: TextStyle(color: Colors.black)));
 }
+

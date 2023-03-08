@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class TextWidget extends StatelessWidget {
-  String? text;
+class CustomeText extends StatelessWidget {
+  final String? text;
 
-  double? size;
-  TextWidget({super.key, this.text, this.size});
+  final double? size;
+  const CustomeText({super.key, this.text, this.size});
 
   @override
   Widget build(BuildContext context) {
